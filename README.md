@@ -17,7 +17,7 @@ The Lane Module can be implemented by following the paper of Duong et al. [26]. 
 ## Implementing Car and Taillight Modules
 
 To write down code for these two models, you first need to know how to write down Resnet-RRC. According to the paper written by Jeon et al. [21], Resnet-RRC was written on top of VGG-RRC [22]. The two figures below show the VGG-RRC and the ResNet-RRC, respectively.
-![VGG-RRC vs Resnet-RRC](https://github.com/SKKU-AutoLab-VSW/TaillightPipeline/vggRRC-vs-resnetRRC.png)
+![VGG-RRC vs Resnet-RRC](https://github.com/SKKU-AutoLab-VSW/TaillightPipeline/blob/main/vggRRC-vs-resnetRRC.png)
 
 The VGG-RRC is the previously proposed model that uses a pre-initialized reduced VGG16 base net, and ResNet-RRC is the proposed model of this paper that uses a pre-initialized ResNet18 base net. The remaining layers are the same. Although conv4_3, FC7, and FC7_pool of the reduced VGG16 are nonexistent names in terms of the ResNet18 layers, in the VGG16, conv4_3 is the second-last convolution layer and FC7 is the layer right after the last layer, excluding pooling layer. Plus, the rest of the layers were newly appended. Judging from this, we hypothesized that such pattern can be similarly applied for the ResNet18 by binding additional feature maps on Res4b and Res5b. This results in a pre-trained layer set without any fully-connected layers before the RRC rolling layers.
 
